@@ -8,8 +8,6 @@ export class DynamodbService {
   constructor () {
     this.AWS = AWS;
     this.AWS.config.update({
-      AWS_ACCESS_KEY_ID: 'AKIAVBQC2S67CNDXUKFK',
-      AWS_SECRET_ACCESS_KEY: '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',
       region: 'us-east-1'
     });
     this.AWS.config.credentials = new this.AWS.SharedIniFileCredentials({ profile: 'serverless' });
