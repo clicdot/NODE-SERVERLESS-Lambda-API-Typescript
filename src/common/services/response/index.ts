@@ -22,13 +22,13 @@ export class JSONResponse {
   constructor (request, reply) {
     this.responseTmp = JSON.parse(JSON.stringify(this.responseTemplate));
     this.responseTmp.response.timestamp = new Date().toISOString();
-    // this.responseTmp.response.code = this.responseJSON.statusCode;
+    this.responseTmp.response.code = reply._statusCode;
     this.responseTmp.response.id = uuidv4();
     this.responseTmp.response.function.method = request.method;
     this.responseTmp.response.function.url = `${request.path}`;
     this.responseTmp.response.function.ip = request.ip;
     this.responseTmp.response.function.version = request.path.split('/')[1];
-    this.responseTmp.response.responseTime = `${Date.now() - request.responseTime}ms`;
+    this.responseTmp.response.responseTime = isNaN(Date.now() - request.responseTime) ? null : `${Date.now() - request.responseTime}ms`;
   }
 
   $inject (obj, value) {
