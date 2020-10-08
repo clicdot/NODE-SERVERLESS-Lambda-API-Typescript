@@ -5,6 +5,6 @@ export const errorHandler = (err, req, res, next) => {
   // do something with the error
   err && console.error('ERROR', err);
   responseMiddleware(req, res, next);
-  return res.status(200).json(errorPackager(req, err));
+  res.status(400).json(errorPackager(req, err));
   next();
 };
